@@ -4,7 +4,7 @@ const mines = 99
 
 export interface Cell {
   isMine: boolean,
-  hasFlag: boolean,
+  isFlag: boolean,
   isRevealed: boolean,
   mineCount: number
 }
@@ -24,7 +24,7 @@ function createEmptyField() {
     for (let j = 0; j < width; j++) {
       field[i][j] = {
         isMine: false,
-        hasFlag: false,
+        isFlag: false,
         isRevealed: false,
         mineCount: 0
       }

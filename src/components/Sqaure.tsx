@@ -1,16 +1,25 @@
-import { useState } from 'react'
 import { Cell } from '../utils/boardGenerator'
 
-export default function Square({ initCell }: { initCell: Cell }) {
-  const [cell, setCell] = useState(initCell)
-
-  function handleClick() {
-    setCell((cell) => ({ ...cell, isRevealed: true }))
+export default function Square({
+  cell,
+  onClick,
+  onRightClick,
+}: {
+  cell: Cell
+  onClick: React.MouseEventHandler
+  onRightClick: React.MouseEventHandler
+}) {
+  function getContent(cell: Cell) {
+    if (!cell.isRevealed) return ''
+    if (cell.isFlag) return 'F'
+    if (cell.isMine) return 'M'
+    return cell.mineCount
   }
 
   return (
     <div
-      onClick={handleClick}
+      onClick={onClick}
+      onContextMenu={onRightClick}
       style={{
         width: 20,
         height: 20,
@@ -21,7 +30,7 @@ export default function Square({ initCell }: { initCell: Cell }) {
         borderStyle: 'solid',
       }}
     >
-      {cell.isRevealed ? (cell.isMine ? 'M' : cell.mineCount) : ''}
+      {getContent(cell)}
     </div>
   )
 }
