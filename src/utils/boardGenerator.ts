@@ -1,6 +1,8 @@
-const height = 16
-const width = 30
-const mines = 99
+import { getNeighbors } from "./minesweeper"
+
+const height = 10
+const width = 10
+const mines = 10
 
 export interface Cell {
   isMine: boolean,
@@ -67,13 +69,14 @@ function createBoard(mineField: Cell[][]) {
 
 function countMines(row: number, col: number, field: Cell[][]) {
   let count = 0
-  for (let i = row - 1; i < row + 2; i++) {
-    if (i < 0 || i >= height) continue
-    for (let j = col - 1; j < col + 2; j++) {
-      if (j < 0 || j >= width) continue
-      if (field[i][j].isMine) count++
-    }
-  }
+  const neighbors = getNeighbors(field, row, col)
+
+  neighbors.forEach(neighbor => {
+    const i = neighbor[0]
+    const j = neighbor[1]
+    if (field[i][j].isMine) count++
+  })
+
   return count
 }
 

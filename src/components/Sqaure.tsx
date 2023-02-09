@@ -11,8 +11,9 @@ export default function Square({
 }) {
   function getContent(cell: Cell) {
     if (!cell.isRevealed) return ''
-    if (cell.isFlag) return 'F'
-    if (cell.isMine) return 'M'
+    if (cell.isFlag) return '🚩'
+    if (cell.isMine) return '💣'
+    if (cell.mineCount === 0) return '⬜️'
     return cell.mineCount
   }
 

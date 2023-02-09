@@ -1,37 +1,23 @@
-import { useImmer } from 'use-immer'
-import generateBoard from '../utils/boardGenerator'
+import { useState } from 'react'
 import Square from './Sqaure'
+import generateBoard from '../utils/boardGenerator'
+import { placeFlag, revealCell } from '../utils/minesweeper'
 
 const initBoard = generateBoard()
 
 export default function Board() {
-  const [board, updateBoard] = useImmer(initBoard)
-
-  function revealAll() {
-    updateBoard((draft) =>
-      draft.forEach((row) =>
-        row.forEach((col) => {
-          col.isRevealed = true
-        })
-      )
-    )
-  }
+  const [board, setBoard] = useState(initBoard)
 
   function handleClick(x: number, y: number) {
-    if (board[x][y].isMine) {
-      revealAll()
-    } else {
-      updateBoard((board) => {
-        board[x][y].isRevealed = true
-      })
+    if (!board[x][y].isRevealed && !board[x][y].isFlag) {
+      setBoard((board) => revealCell(board, x, y))
     }
   }
 
   function handleRightClick(x: number, y: number) {
-    updateBoard((draft) => {
-      draft[x][y].isFlag = true
-      draft[x][y].isRevealed = true
-    })
+    if (!board[x][y].isRevealed) {
+      setBoard((board) => placeFlag(board, x, y))
+    }
   }
 
   return (
