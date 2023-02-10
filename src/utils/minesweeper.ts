@@ -38,10 +38,45 @@ export function revealCell(board: Cell[][], x: number, y: number) {
   })
 }
 
-export function placeFlag(board: Cell[][], x: number, y: number) {
+// function countNeighborFlag(board: Cell[][], neighbors: number[][]) {
+//   let count = 0
+//   neighbors.forEach(neighbor => {
+//     const i = neighbor[0]
+//     const j = neighbor[1]
+//     if (board[i][j].isFlag) count++
+//   })
+
+//   return count
+// }
+
+export function revealNeighbors(board: Cell[][], x: number, y: number) {
+  // const neighbors = getNeighbors(board, x, y)
+  // const flagCount = countNeighborFlag(board, neighbors)
+  // const mineCount = board[x][y].mineCount
+
+  // if (mineCount !== flagCount) return board
+
+  // return produce(board, draft => {
+  //   neighbors.forEach(neighbor => {
+  //     const i = neighbor[0]
+  //     const j = neighbor[1]
+  //     if (!draft[i][j].isMine && draft[i][j].isFlag) {
+  //       revealAll(draft)
+  //     }
+  //     revealCell(draft, i, j)
+  //   })
+  // })
+}
+
+export function toggleFlag(board: Cell[][], x: number, y: number) {
   return produce(board, draft => {
-    draft[x][y].isFlag = true
-    draft[x][y].isRevealed = true
+    if (!draft[x][y].isFlag && !draft[x][y].isRevealed) {
+      draft[x][y].isFlag = true
+      draft[x][y].isRevealed = true
+    } else if (draft[x][y].isFlag) {
+      draft[x][y].isFlag = false
+      draft[x][y].isRevealed = false
+    }
   })
 }
 

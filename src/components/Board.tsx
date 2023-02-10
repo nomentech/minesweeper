@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import Square from './Sqaure'
 import generateBoard from '../utils/boardGenerator'
-import { placeFlag, revealCell } from '../utils/minesweeper'
+import { toggleFlag, revealCell, revealNeighbors } from '../utils/minesweeper'
 
 const initBoard = generateBoard()
 
@@ -15,9 +15,17 @@ export default function Board() {
   }
 
   function handleRightClick(x: number, y: number) {
-    if (!board[x][y].isRevealed) {
-      setBoard((board) => placeFlag(board, x, y))
-    }
+    setBoard((board) => toggleFlag(board, x, y))
+  }
+
+  function handleDoubleClick(x: number, y: number) {
+    // if (
+    //   board[x][y].isRevealed &&
+    //   board[x][y].mineCount !== 0 &&
+    //   !board[x][y].isFlag
+    // ) {
+    //   setBoard((board) => revealNeighbors(board, x, y))
+    // }
   }
 
   return (
@@ -33,6 +41,7 @@ export default function Board() {
                 e.preventDefault()
                 handleRightClick(rowIndex, colIndex)
               }}
+              onDoubleClick={() => handleDoubleClick(rowIndex, colIndex)}
             />
           ))}
         </div>

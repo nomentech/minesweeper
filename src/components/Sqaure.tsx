@@ -4,10 +4,12 @@ export default function Square({
   cell,
   onClick,
   onRightClick,
+  onDoubleClick,
 }: {
   cell: Cell
   onClick: React.MouseEventHandler
   onRightClick: React.MouseEventHandler
+  onDoubleClick: React.MouseEventHandler
 }) {
   function getContent(cell: Cell) {
     if (!cell.isRevealed) return ''
@@ -21,6 +23,7 @@ export default function Square({
     <div
       onClick={onClick}
       onContextMenu={onRightClick}
+      onDoubleClick={onDoubleClick}
       style={{
         width: 20,
         height: 20,
