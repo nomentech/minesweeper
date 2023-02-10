@@ -1,32 +1,23 @@
-import { useState } from 'react'
 import Square from './Sqaure'
-import generateBoard from '../utils/boardGenerator'
-import { toggleFlag, revealCell, revealNeighbors } from '../utils/minesweeper'
-
-const initBoard = generateBoard()
+import { useBoard, useBoardDispatch } from '../BoardContext'
 
 export default function Board() {
-  const [board, setBoard] = useState(initBoard)
+  const board = useBoard()
+  const dispatch = useBoardDispatch()
 
   function handleClick(x: number, y: number) {
     if (!board[x][y].isRevealed && !board[x][y].isFlag) {
-      setBoard((board) => revealCell(board, x, y))
+      dispatch({ type: 'click', cell: { x, y } })
     }
   }
 
   function handleRightClick(x: number, y: number) {
-    setBoard((board) => toggleFlag(board, x, y))
+    if (!board[x][y].isRevealed || board[x][y].isFlag) {
+      dispatch({ type: 'rightClick', cell: { x, y } })
+    }
   }
 
-  function handleDoubleClick(x: number, y: number) {
-    // if (
-    //   board[x][y].isRevealed &&
-    //   board[x][y].mineCount !== 0 &&
-    //   !board[x][y].isFlag
-    // ) {
-    //   setBoard((board) => revealNeighbors(board, x, y))
-    // }
-  }
+  function handleDoubleClick(x: number, y: number) {}
 
   return (
     <div>
