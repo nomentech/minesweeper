@@ -1,5 +1,5 @@
 import Square from './Sqaure'
-import { useBoard, useBoardDispatch } from '../BoardContext'
+import { useBoard, useBoardDispatch } from '../context/BoardContext'
 
 export default function Board() {
   const board = useBoard()

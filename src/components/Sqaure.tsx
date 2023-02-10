@@ -1,4 +1,4 @@
-import { Cell } from '../utils/boardGenerator'
+import { Cell } from '../context/minesweeper'
 
 export default function Square({
   cell,

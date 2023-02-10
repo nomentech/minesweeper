@@ -1,4 +1,4 @@
-import { BoardProvider } from '../BoardContext'
+import { BoardProvider } from '../context/BoardContext'
 import Board from './Board'
 
 export default function Game() {
