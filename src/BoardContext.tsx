@@ -37,14 +37,46 @@ function boardReducer(draft: Cell[][], action: any) {
       toggleFlag(draft, cell.x, cell.y)
       break
 
+    case 'doubleClick':
+      revealNeighbors(draft, cell.x, cell.y)
+      break
+
     default:
       throw Error('Unknown action: ' + action.type)
   }
 }
 
 // move following functions to separate file after done
+function revealNeighbors(board: Cell[][], x: number, y: number) {
+  const neighbors = getNeighbors(board, x, y)
+  const flagCount = countNeighborFlag(board, neighbors)
+  const mineCount = board[x][y].mineCount
+
+  if (mineCount !== flagCount) return board
+
+  neighbors.forEach((neighbor) => {
+    const i = neighbor[0]
+    const j = neighbor[1]
+    if (!board[i][j].isMine && board[i][j].isFlag) {
+      revealAll(board)
+    }
+    revealCell(board, i, j)
+  })
+}
+
+function countNeighborFlag(board: Cell[][], neighbors: number[][]) {
+  let count = 0
+  neighbors.forEach((neighbor) => {
+    const i = neighbor[0]
+    const j = neighbor[1]
+    if (board[i][j].isFlag) count++
+  })
+
+  return count
+}
+
 function revealCell(board: Cell[][], x: number, y: number) {
-  if (board[x][y].isMine) {
+  if (board[x][y].isMine && !board[x][y].isFlag) {
     revealAll(board)
   }
 

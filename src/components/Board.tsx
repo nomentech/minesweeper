@@ -17,7 +17,11 @@ export default function Board() {
     }
   }
 
-  function handleDoubleClick(x: number, y: number) {}
+  function handleDoubleClick(x: number, y: number) {
+    if (board[x][y].isRevealed && board[x][y].mineCount !== 0) {
+      dispatch({ type: 'doubleClick', cell: { x, y } })
+    }
+  }
 
   return (
     <div>
