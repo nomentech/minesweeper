@@ -1,19 +1,20 @@
 import { createContext, ReactNode, useContext } from 'react'
 import { useImmerReducer } from 'use-immer'
+
+import { createEmptyBoard, createBoard } from '../minesweeper/boardCreator'
 import {
-  Cell,
-  generateBoard,
   revealCell,
   revealNeighbors,
   toggleFlag,
-} from './minesweeper'
+} from '../minesweeper/gamePlayer'
+import { Cell } from '../minesweeper/types'
 
-const initialBoard = generateBoard()
-const BoardContext = createContext<Cell[][]>(initialBoard)
-const BoardDispatchContext = createContext<any>(null)
+const emptyBoard = createEmptyBoard()
+const BoardContext = createContext<Cell[][]>(emptyBoard)
+const BoardDispatchContext = createContext<React.Dispatch<any>>(() => null)
 
 export function BoardProvider({ children }: { children: ReactNode }) {
-  const [board, dispatch] = useImmerReducer(boardReducer, initialBoard)
+  const [board, dispatch] = useImmerReducer(boardReducer, emptyBoard)
 
   return (
     <BoardContext.Provider value={board}>
@@ -35,7 +36,11 @@ export function useBoardDispatch() {
 function boardReducer(draft: Cell[][], action: any) {
   const { type, cell } = action
   switch (type) {
-    case 'click':
+    case 'firstClick':
+      createBoard(draft, cell.x, cell.y)
+      break
+
+    case 'leftClick':
       revealCell(draft, cell.x, cell.y)
       break
 

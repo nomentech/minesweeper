@@ -1,4 +1,4 @@
-import { Cell } from '../context/minesweeper'
+import { Cell } from '../minesweeper/types'
 
 export default function Square({
   cell,

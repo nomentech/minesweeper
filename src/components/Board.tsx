@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import Square from './Sqaure'
 import { useBoard, useBoardDispatch } from '../context/BoardContext'
 
@@ -5,9 +6,16 @@ export default function Board() {
   const board = useBoard()
   const dispatch = useBoardDispatch()
 
+  const [isFirstClick, setIsFirstClick] = useState(true)
+
   function handleClick(x: number, y: number) {
+    if (isFirstClick) {
+      dispatch({ type: 'firstClick', cell: { x, y } })
+      setIsFirstClick(false)
+    }
+
     if (!board[x][y].isRevealed && !board[x][y].isFlag) {
-      dispatch({ type: 'click', cell: { x, y } })
+      dispatch({ type: 'leftClick', cell: { x, y } })
     }
   }
 
