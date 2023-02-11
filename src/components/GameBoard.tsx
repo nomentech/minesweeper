@@ -25,9 +25,9 @@ export default function GameBoard() {
   }
 
   return (
-    <div className="border">
+    <div className="board">
       {board.field.map((row, rowIndex) => (
-        <div key={rowIndex} style={{ display: 'flex', flexDirection: 'row' }}>
+        <div key={rowIndex} className="board-row">
           {row.map((col, colIndex) => (
             <Square
               key={colIndex}

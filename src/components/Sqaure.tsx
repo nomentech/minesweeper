@@ -24,15 +24,7 @@ export default function Square({
       onClick={onClick}
       onContextMenu={onRightClick}
       onDoubleClick={onDoubleClick}
-      style={{
-        width: 20,
-        height: 20,
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-        borderWidth: 1,
-        borderStyle: 'solid',
-      }}
+      className={`square ${!cell.isRevealed && 'square-closed'}`}
     >
       {getContent(cell)}
     </div>

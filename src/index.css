@@ -5,6 +5,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: #f0f3f4;
 }
 
 .container {
@@ -20,8 +21,49 @@ body {
   cursor: pointer;
 }
 
-.border {
+.content {
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+
+.game {
+  border: 5px solid silver;
+  box-shadow: 2px 2px 0 2px grey, -2px -2px 0 2px white;
+}
+
+.toolbar {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 5px;
+  border: 5px solid silver;
+  box-shadow: inset 2px 2px 0 2px grey, inset -2px -2px 0 2px white;
+}
+
+.board {
+  border: 5px solid silver;
+  padding: 4px;
+  box-shadow: inset 2px 2px 0 2px grey, inset -2px -2px 0 2px white;
+}
+
+.board-row { 
+  display: flex;
+  flex-direction: row;
+}
+
+.square {
+  width: 24px;
+  height: 24px;
+  margin: 2px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* border: 1px solid silver; */
+  background-color: silver;
+  cursor: pointer;
+}
+
+.square-closed {
+  box-shadow: 1px 1px 0 1px grey;
 }

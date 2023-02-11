@@ -55,7 +55,7 @@ function revealEmptyCell(field: Cell[][], x: number, y: number) {
   for (let index = 0; index < neighbors.length; index++) {
     const i = neighbors[index][0]
     const j = neighbors[index][1]
-    if (field[i][j].isRevealed) continue
+    if (field[i][j].isRevealed || field[i][j].isFlag || field[i][j].isMine) continue
 
     field[i][j].isRevealed = true
     if (field[i][j].mineCount === 0 && !field[i][j].isFlag && !field[i][j].isMine) {
