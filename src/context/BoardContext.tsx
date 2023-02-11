@@ -41,13 +41,16 @@ function boardReducer(draft: Board, action: any) {
     case 'changeLevel':
       return payload.board
 
+    case 'createBoard':
+      createMineField(draft, payload.x, payload.y)
+      break
+
     case 'leftClick':
-      if (draft.isEmpty) createMineField(draft, payload.x, payload.y)
       revealCell(draft.field, payload.x, payload.y)
       break
 
     case 'rightClick':
-      toggleFlag(draft.field, payload.x, payload.y)
+      toggleFlag(draft, payload.x, payload.y)
       break
 
     case 'doubleClick':

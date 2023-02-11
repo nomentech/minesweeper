@@ -1,4 +1,4 @@
-import { Cell } from './types'
+import { Board, Cell } from './types'
 import { getNeighbors } from './utils'
 
 function revealNeighbors(field: Cell[][], x: number, y: number) {
@@ -64,13 +64,17 @@ function revealEmptyCell(field: Cell[][], x: number, y: number) {
   }
 }
 
-function toggleFlag(field: Cell[][], x: number, y: number) {
+function toggleFlag(board: Board, x: number, y: number) {
+  const field = board.field
+
   if (!field[x][y].isFlag && !field[x][y].isRevealed) {
     field[x][y].isFlag = true
     field[x][y].isRevealed = true
+    board.mines--
   } else if (field[x][y].isFlag) {
     field[x][y].isFlag = false
     field[x][y].isRevealed = false
+    board.mines++
   }
 }
 

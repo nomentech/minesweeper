@@ -1,12 +1,21 @@
 import Square from './Sqaure'
 import { useBoard, useBoardDispatch } from '../context/BoardContext'
 
-export default function GameBoard() {
+export default function GameBoard({
+  setStartTimer,
+}: {
+  setStartTimer: Function
+}) {
   const board = useBoard()
   const field = board.field
   const dispatch = useBoardDispatch()
 
   function handleClick(x: number, y: number) {
+    if (board.isEmpty) {
+      setStartTimer(true)
+      dispatch({ type: 'createBoard', payload: { board, x, y } })
+    }
+
     if (!field[x][y].isRevealed && !field[x][y].isFlag) {
       dispatch({ type: 'leftClick', payload: { x, y } })
     }
