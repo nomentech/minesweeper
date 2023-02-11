@@ -58,7 +58,7 @@ function revealEmptyCell(field: Cell[][], x: number, y: number) {
     if (field[i][j].isRevealed) continue
 
     field[i][j].isRevealed = true
-    if (field[i][j].mineCount === 0) {
+    if (field[i][j].mineCount === 0 && !field[i][j].isFlag && !field[i][j].isMine) {
       revealEmptyCell(field, i, j)
     }
   }
