@@ -1,76 +1,76 @@
 import { Cell } from './types'
 import { getNeighbors } from './utils'
 
-function revealNeighbors(board: Cell[][], x: number, y: number) {
-  const neighbors = getNeighbors(board, x, y)
-  const flagCount = countNeighborFlag(board, neighbors)
-  const mineCount = board[x][y].mineCount
+function revealNeighbors(field: Cell[][], x: number, y: number) {
+  const neighbors = getNeighbors(field, x, y)
+  const flagCount = countNeighborFlag(field, neighbors)
+  const mineCount = field[x][y].mineCount
 
-  if (mineCount !== flagCount) return board
+  if (mineCount !== flagCount) return
 
   neighbors.forEach((neighbor) => {
     const i = neighbor[0]
     const j = neighbor[1]
-    if (!board[i][j].isMine && board[i][j].isFlag) {
-      revealAll(board)
+    if (!field[i][j].isMine && field[i][j].isFlag) {
+      revealAll(field)
     }
-    revealCell(board, i, j)
+    revealCell(field, i, j)
   })
 }
 
-function countNeighborFlag(board: Cell[][], neighbors: number[][]) {
+function countNeighborFlag(field: Cell[][], neighbors: number[][]) {
   let count = 0
   neighbors.forEach((neighbor) => {
     const i = neighbor[0]
     const j = neighbor[1]
-    if (board[i][j].isFlag) count++
+    if (field[i][j].isFlag) count++
   })
 
   return count
 }
 
-function revealCell(board: Cell[][], x: number, y: number) {
-  if (board[x][y].isMine && !board[x][y].isFlag) {
-    revealAll(board)
+function revealCell(field: Cell[][], x: number, y: number) {
+  if (field[x][y].isMine && !field[x][y].isFlag) {
+    revealAll(field)
   }
 
-  board[x][y].isRevealed = true
+  field[x][y].isRevealed = true
 
-  if (board[x][y].mineCount === 0) {
-    revealEmptyCell(board, x, y)
+  if (field[x][y].mineCount === 0) {
+    revealEmptyCell(field, x, y)
   }
 }
 
-function revealAll(board: Cell[][]) {
-  board.forEach((row) =>
+function revealAll(field: Cell[][]) {
+  field.forEach((row) =>
     row.forEach((col) => {
       col.isRevealed = true
     })
   )
 }
 
-function revealEmptyCell(board: Cell[][], x: number, y: number) {
-  const neighbors = getNeighbors(board, x, y)
+function revealEmptyCell(field: Cell[][], x: number, y: number) {
+  const neighbors = getNeighbors(field, x, y)
 
   for (let index = 0; index < neighbors.length; index++) {
     const i = neighbors[index][0]
     const j = neighbors[index][1]
-    if (board[i][j].isRevealed) continue
+    if (field[i][j].isRevealed) continue
 
-    board[i][j].isRevealed = true
-    if (board[i][j].mineCount === 0) {
-      revealEmptyCell(board, i, j)
+    field[i][j].isRevealed = true
+    if (field[i][j].mineCount === 0) {
+      revealEmptyCell(field, i, j)
     }
   }
 }
 
-function toggleFlag(board: Cell[][], x: number, y: number) {
-  if (!board[x][y].isFlag && !board[x][y].isRevealed) {
-    board[x][y].isFlag = true
-    board[x][y].isRevealed = true
-  } else if (board[x][y].isFlag) {
-    board[x][y].isFlag = false
-    board[x][y].isRevealed = false
+function toggleFlag(field: Cell[][], x: number, y: number) {
+  if (!field[x][y].isFlag && !field[x][y].isRevealed) {
+    field[x][y].isFlag = true
+    field[x][y].isRevealed = true
+  } else if (field[x][y].isFlag) {
+    field[x][y].isFlag = false
+    field[x][y].isRevealed = false
   }
 }
 

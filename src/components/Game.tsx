@@ -1,10 +1,14 @@
 import { BoardProvider } from '../context/BoardContext'
-import Board from './Board'
+import GameBoard from './GameBoard'
+import Header from './Header'
 
 export default function Game() {
   return (
     <BoardProvider>
-      <Board />
+      <div className="container">
+        <Header />
+        <GameBoard />
+      </div>
     </BoardProvider>
   )
 }
