@@ -29,6 +29,7 @@ body {
 
 .game {
   border: 5px solid silver;
+  border-radius: 2px;
   box-shadow: 2px 2px 0 2px grey, -2px -2px 0 2px white;
 }
 
@@ -36,9 +37,18 @@ body {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  align-items: center;
   padding: 10px;
   border: 5px solid silver;
+  background-color: silver;
   box-shadow: inset 2px 2px 0 2px grey, inset -2px -2px 0 2px white;
+}
+
+.emoji {
+  cursor: pointer;
+  padding: 0 2px 0 2px;
+  border-radius: 1px;
+  box-shadow: 1px 1px 0 1px grey, -1px -1px 0 1px white;
 }
 
 .board {

@@ -3,12 +3,13 @@ import { useImmerReducer } from 'use-immer'
 
 import { createMineField } from '../minesweeper/boardCreator'
 import { BOARD_LIST } from '../minesweeper/contants'
+import { Board } from '../minesweeper/types'
 import {
+  revealAll,
   revealCell,
   revealNeighbors,
   toggleFlag,
 } from '../minesweeper/gamePlayer'
-import { Board } from '../minesweeper/types'
 
 const initialBoard = BOARD_LIST[0]
 const BoardContext = createContext<Board>(initialBoard)
@@ -38,22 +39,26 @@ function boardReducer(draft: Board, action: any) {
   const { type, payload } = action
 
   switch (type) {
-    case 'changeLevel':
+    case 'change_level':
       return payload.board
 
-    case 'createBoard':
+    case 'create_mine_field':
       createMineField(draft, payload.x, payload.y)
       break
 
-    case 'leftClick':
+    case 'reveal_all':
+      revealAll(draft.field)
+      break
+
+    case 'reveal_cell':
       revealCell(draft.field, payload.x, payload.y)
       break
 
-    case 'rightClick':
+    case 'toggle_flag':
       toggleFlag(draft, payload.x, payload.y)
       break
 
-    case 'doubleClick':
+    case 'reveal_neighbors':
       revealNeighbors(draft.field, payload.x, payload.y)
       break
 

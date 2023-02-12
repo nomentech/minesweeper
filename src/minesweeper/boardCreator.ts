@@ -1,6 +1,24 @@
 import { Board, Cell } from "./types"
 import { getNeighbors } from "./utils"
 
+function createEmptyField(width: number, height: number) {
+  const field: Cell[][] = [] 
+  for (let i = 0; i < height; i++) {
+    field[i] = []
+    for (let j = 0; j < width; j++) {
+      field[i][j] = {
+        isMine: false,
+        isFlag: false,
+        isRevealed: false,
+        isDetonated: false,
+        mineCount: 0
+      }
+    }
+  }
+  
+  return field
+}
+
 function createMineField(board: Board, x: number, y: number) {
   plantMines(board, x, y)
   calculateMines(board)
@@ -46,4 +64,4 @@ function countMines(row: number, col: number, field: Cell[][]) {
   return count
 }
 
-export { createMineField }
+export { createEmptyField, createMineField }

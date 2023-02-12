@@ -17,3 +17,14 @@ export function getNeighbors(board: Cell[][], x: number, y: number) {
 
   return neighbors
 }
+
+export function countNeighborFlag(field: Cell[][], neighbors: number[][]) {
+  let count = 0
+  neighbors.forEach((neighbor) => {
+    const i = neighbor[0]
+    const j = neighbor[1]
+    if (field[i][j].isFlag) count++
+  })
+
+  return count
+}

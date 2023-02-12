@@ -2,6 +2,7 @@ export interface Cell {
   isMine: boolean,
   isFlag: boolean,
   isRevealed: boolean,
+  isDetonated: boolean,
   mineCount: number
 }
 
@@ -11,5 +12,6 @@ export interface Board {
   height: number,
   mines: number,
   isEmpty: boolean,
+  isDetonated: boolean,
   field: Cell[][]
 }

@@ -1,3 +1,4 @@
+import { ICONS } from '../minesweeper/contants'
 import { Cell } from '../minesweeper/types'
 
 export default function Square({
@@ -12,10 +13,10 @@ export default function Square({
   onDoubleClick: React.MouseEventHandler
 }) {
   function getContent(cell: Cell) {
-    if (!cell.isRevealed) return ''
-    if (cell.isFlag) return '🚩'
-    if (cell.isMine) return '💣'
-    if (cell.mineCount === 0) return '⬜️'
+    if (cell.isFlag) return ICONS.flag
+    if (!cell.isRevealed) return ICONS.unrevealed
+    if (cell.isMine) return ICONS.mine
+    if (cell.mineCount === 0) return ICONS.empty
     return cell.mineCount
   }
 

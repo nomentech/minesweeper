@@ -1,7 +1,14 @@
 import { useEffect, useState } from 'react'
 import { useBoard } from '../context/BoardContext'
+import { ICONS } from '../minesweeper/contants'
 
-export default function GameToolbar({ startTimer }: { startTimer: boolean }) {
+export default function GameToolbar({
+  startTimer,
+  detonated,
+}: {
+  startTimer: boolean
+  detonated: boolean | null
+}) {
   const board = useBoard()
   const [timer, setTimer] = useState(0)
 
@@ -15,7 +22,7 @@ export default function GameToolbar({ startTimer }: { startTimer: boolean }) {
   return (
     <div className="toolbar">
       <div>{board.mines}</div>
-      <div>😄</div>
+      <div className="emoji">{detonated ? ICONS.frown : ICONS.smiley}</div>
       <div>{timer}</div>
     </div>
   )

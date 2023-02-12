@@ -4,12 +4,13 @@ import GameToolbar from './GameToolbar'
 
 export default function Game() {
   const [startTimer, setStartTimer] = useState(false)
+  const [detonated, setDetonated] = useState(false)
 
   return (
     <div className="content">
       <div className="game">
-        <GameToolbar startTimer={startTimer} />
-        <GameBoard setStartTimer={setStartTimer} />
+        <GameToolbar startTimer={startTimer} detonated={detonated} />
+        <GameBoard setStartTimer={setStartTimer} setDetonated={setDetonated} />
       </div>
     </div>
   )

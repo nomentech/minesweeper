@@ -6,7 +6,7 @@ export default function Header() {
   const dispatch = useBoardDispatch()
 
   function handleClick(board: Board) {
-    dispatch({ type: 'changeLevel', payload: { board } })
+    dispatch({ type: 'change_level', payload: { board } })
   }
 
   return (
