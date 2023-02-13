@@ -1,4 +1,4 @@
-import { createEmptyField } from "./boardCreator"
+import { createEmptyField } from './boardCreator'
 
 export const BOARD_LIST = [
   { 
@@ -38,14 +38,3 @@ export const BOARD_LIST = [
     field: createEmptyField(30, 16)
   }
 ]
-
-export const ICONS = {
-  unrevealed: '',
-  flag: '🚩',
-  mine:  '💣',
-  detonation: '💥',
-  won: '😎',
-  neutral: '😄',
-  lost: '😔',
-  numbers: ['⬜️', '1️⃣', '2️⃣', '3️⃣', '4️⃣', '5️⃣', '6️⃣', '7️⃣', '8️⃣']
-}

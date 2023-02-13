@@ -1,5 +1,5 @@
 import { useBoard, useBoardDispatch } from '../context/BoardContext'
-import { BOARD_LIST } from '../minesweeper/contants'
+import { BOARD_LIST } from '../minesweeper/boardList'
 import { Board } from '../minesweeper/types'
 
 export default function Header() {

@@ -2,7 +2,7 @@ import { createContext, ReactNode, useContext } from 'react'
 import { useImmerReducer } from 'use-immer'
 
 import { createMineField } from '../minesweeper/boardCreator'
-import { BOARD_LIST } from '../minesweeper/contants'
+import { BOARD_LIST } from '../minesweeper/boardList'
 import { Board } from '../minesweeper/types'
 import {
   revealCell,

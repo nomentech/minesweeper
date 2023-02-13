@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { useBoard, useBoardDispatch } from '../context/BoardContext'
-import { BOARD_LIST, ICONS } from '../minesweeper/contants'
+import { face_lose, face_neutral, face_win } from '../icons'
+import { BOARD_LIST } from '../minesweeper/boardList'
 
 export default function GameToolbar() {
   const board = useBoard()
@@ -9,9 +10,9 @@ export default function GameToolbar() {
   const isWon = board.isWon
   const counter = board.mines - board.flags
 
-  let emoji = ICONS.neutral
-  if (isWon === true) emoji = ICONS.won
-  if (isWon === false) emoji = ICONS.lost
+  let emoji = face_neutral
+  if (isWon === true) emoji = face_win
+  if (isWon === false) emoji = face_lose
 
   function handleClick() {
     const newBoard = BOARD_LIST.find((b) => b.level === board.level)
@@ -22,7 +23,7 @@ export default function GameToolbar() {
     <div className="toolbar">
       <div className="counter">{String(counter).padStart(3, '0')}</div>
       <div className="emoji" onClick={handleClick}>
-        {emoji}
+        <img width={36} height={36} src={emoji} alt="" />
       </div>
       <Timer />
     </div>

@@ -1,4 +1,4 @@
-import { ICONS } from '../minesweeper/contants'
+import { unrevealed, numbers, mine, mine_red, flag } from '../icons'
 import { Cell } from '../minesweeper/types'
 
 export default function Square({
@@ -13,11 +13,11 @@ export default function Square({
   onDoubleClick: React.MouseEventHandler
 }) {
   function getContent(cell: Cell) {
-    if (cell.isFlag) return ICONS.flag
-    if (!cell.isRevealed) return ICONS.unrevealed
-    if (cell.isDetonated) return ICONS.detonation
-    if (cell.isMine) return ICONS.mine
-    return ICONS.numbers[cell.mineCount]
+    if (cell.isFlag) return flag
+    if (!cell.isRevealed) return unrevealed
+    if (cell.isDetonated) return mine_red
+    if (cell.isMine) return mine
+    return numbers[cell.mineCount]
   }
 
   return (
@@ -25,9 +25,9 @@ export default function Square({
       onClick={onClick}
       onContextMenu={onRightClick}
       onDoubleClick={onDoubleClick}
-      className={`square ${!cell.isRevealed ? 'square-closed' : ''}`}
+      className="square"
     >
-      {getContent(cell)}
+      <img width={24} height={24} src={getContent(cell)} alt="" />
     </div>
   )
 }
