@@ -1,9 +1,11 @@
 import { useEffect, useState } from 'react'
-import { useBoard } from '../context/BoardContext'
-import { ICONS } from '../minesweeper/contants'
+import { useBoard, useBoardDispatch } from '../context/BoardContext'
+import { BOARD_LIST, ICONS } from '../minesweeper/contants'
 
 export default function GameToolbar() {
   const board = useBoard()
+  const boardDispatch = useBoardDispatch()
+
   const isWon = board.isWon
   const counter = board.mines - board.flags
 
@@ -11,10 +13,17 @@ export default function GameToolbar() {
   if (isWon === true) emoji = ICONS.won
   if (isWon === false) emoji = ICONS.lost
 
+  function handleClick() {
+    const newBoard = BOARD_LIST.find((b) => b.level === board.level)
+    boardDispatch({ type: 'reset_board', payload: { board: newBoard } })
+  }
+
   return (
     <div className="toolbar">
       <div className="counter">{counter}</div>
-      <div className="emoji">{emoji}</div>
+      <div className="emoji" onClick={handleClick}>
+        {emoji}
+      </div>
       <Timer />
     </div>
   )
@@ -23,15 +32,19 @@ export default function GameToolbar() {
 function Timer() {
   const board = useBoard()
   const isPlaying = board.isPlaying
+  const isEmpty = board.isEmpty
 
   const [timer, setTimer] = useState(0)
 
   useEffect(() => {
+    if (isEmpty) setTimer(0)
+
     const id = setInterval(() => {
       if (isPlaying) setTimer((c) => c + 1)
     }, 1000)
+
     return () => clearInterval(id)
-  }, [isPlaying])
+  }, [isPlaying, isEmpty])
 
   return <div className="counter">{timer}</div>
 }

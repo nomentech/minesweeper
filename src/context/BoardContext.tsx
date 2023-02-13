@@ -38,7 +38,7 @@ function boardReducer(draft: Board, action: any) {
   const { type, payload } = action
 
   switch (type) {
-    case 'change_level':
+    case 'reset_board':
       return payload.board
 
     case 'create_mine_field':

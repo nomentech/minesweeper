@@ -3,10 +3,10 @@ import { BOARD_LIST } from '../minesweeper/contants'
 import { Board } from '../minesweeper/types'
 
 export default function Header() {
-  const dispatch = useBoardDispatch()
+  const boardDispatch = useBoardDispatch()
 
   function handleClick(board: Board) {
-    dispatch({ type: 'change_level', payload: { board } })
+    boardDispatch({ type: 'reset_board', payload: { board } })
   }
 
   return (

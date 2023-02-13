@@ -1,4 +1,4 @@
-import { Board, Cell } from './types'
+import { Board } from './types'
 import { countNeighborFlag, getNeighbors } from './helpers'
 
 function revealNeighbors(board: Board, x: number, y: number) {
