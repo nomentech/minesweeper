@@ -1,4 +1,4 @@
-import { Board } from './types'
+import { Board, Cell } from './types'
 import { countNeighborFlag, getNeighbors } from './helpers'
 
 function revealNeighbors(board: Board, x: number, y: number) {
@@ -96,7 +96,23 @@ function isWinning(board: Board) {
 
   board.isWon = true
   board.isPlaying = false
+  flagAll(board)
+
   return true
+}
+
+// Flag rest of the unrevealed cell when win
+function flagAll(board: Board) {
+  const field = board.field
+
+  field.forEach((row) =>
+    row.forEach((col) => {
+      if (!col.isRevealed && !col.isFlag) {
+        col.isFlag = true
+        board.flags++
+      }
+    })
+  )
 }
 
 function revealAll(board: Board) {
