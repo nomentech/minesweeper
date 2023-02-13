@@ -5,7 +5,6 @@ import { createMineField } from '../minesweeper/boardCreator'
 import { BOARD_LIST } from '../minesweeper/contants'
 import { Board } from '../minesweeper/types'
 import {
-  revealAll,
   revealCell,
   revealNeighbors,
   toggleFlag,
@@ -46,12 +45,8 @@ function boardReducer(draft: Board, action: any) {
       createMineField(draft, payload.x, payload.y)
       break
 
-    case 'reveal_all':
-      revealAll(draft.field)
-      break
-
     case 'reveal_cell':
-      revealCell(draft.field, payload.x, payload.y)
+      revealCell(draft, payload.x, payload.y)
       break
 
     case 'toggle_flag':
@@ -59,7 +54,7 @@ function boardReducer(draft: Board, action: any) {
       break
 
     case 'reveal_neighbors':
-      revealNeighbors(draft.field, payload.x, payload.y)
+      revealNeighbors(draft, payload.x, payload.y)
       break
 
     default:

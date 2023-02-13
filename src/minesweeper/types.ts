@@ -11,7 +11,10 @@ export interface Board {
   width: number,
   height: number,
   mines: number,
+  flags: number,
+  unrevealed: number,
   isEmpty: boolean,
-  isDetonated: boolean,
+  isPlaying: boolean
+  isWon: boolean | null,
   field: Cell[][]
 }

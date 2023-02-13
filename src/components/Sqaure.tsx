@@ -15,6 +15,7 @@ export default function Square({
   function getContent(cell: Cell) {
     if (cell.isFlag) return ICONS.flag
     if (!cell.isRevealed) return ICONS.unrevealed
+    if (cell.isDetonated) return ICONS.detonation
     if (cell.isMine) return ICONS.mine
     if (cell.mineCount === 0) return ICONS.empty
     return cell.mineCount

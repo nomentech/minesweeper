@@ -1,5 +1,5 @@
 import { Board, Cell } from "./types"
-import { getNeighbors } from "./utils"
+import { getNeighbors } from "./helpers"
 
 function createEmptyField(width: number, height: number) {
   const field: Cell[][] = [] 
@@ -23,6 +23,7 @@ function createMineField(board: Board, x: number, y: number) {
   plantMines(board, x, y)
   calculateMines(board)
   board.isEmpty = false
+  board.isPlaying = true
 }
 
 function plantMines(board: Board, x: number, y: number) {
@@ -45,15 +46,16 @@ function calculateMines(board: Board) {
   for (let i = 0; i < board.height; i++) {
     for (let j = 0; j < board.width; j++) {
       if (!field[i][j].isMine) {
-        field[i][j].mineCount = countMines(i, j, field)
+        field[i][j].mineCount = countMines(i, j, board)
       }
     }
   }
 }
 
-function countMines(row: number, col: number, field: Cell[][]) {
+function countMines(row: number, col: number, board: Board) {
+  const field = board.field
   let count = 0
-  const neighbors = getNeighbors(field, row, col)
+  const neighbors = getNeighbors(board, row, col)
 
   neighbors.forEach(neighbor => {
     const i = neighbor[0]

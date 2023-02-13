@@ -6,8 +6,11 @@ export const BOARD_LIST = [
     width: 10, 
     height: 10, 
     mines: 10,
+    flags: 0,
+    unrevealed: 10*10,
     isEmpty: true,
-    isDetonated: false,
+    isPlaying: false,
+    isWon: null,
     field: createEmptyField(10, 10)
   },
   { 
@@ -15,8 +18,11 @@ export const BOARD_LIST = [
     width: 16, 
     height: 16, 
     mines: 40,
+    flags: 0,
+    unrevealed: 16*16,
     isEmpty: true,
-    isDetonated: false,
+    isPlaying: false,
+    isWon: null,
     field: createEmptyField(16, 16)
   },
   { 
@@ -24,8 +30,11 @@ export const BOARD_LIST = [
     width: 30, 
     height: 16, 
     mines: 99,
+    flags: 0,
+    unrevealed: 30*16,
     isEmpty: true,
-    isDetonated: false,
+    isPlaying: false,
+    isWon: null,
     field: createEmptyField(30, 16)
   }
 ]
@@ -34,7 +43,9 @@ export const ICONS = {
   unrevealed: '',
   flag: '🚩',
   mine:  '💣',
+  detonation: '💥',
   empty: '⬜️',
-  smiley: '😄',
-  frown: '😵'
+  won: '😎',
+  neutral: '😄',
+  lost: '😔'
 }

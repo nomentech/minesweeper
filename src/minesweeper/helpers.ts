@@ -1,14 +1,12 @@
-import { Cell } from "./types"
+import { Board, Cell } from "./types"
 
-export function getNeighbors(board: Cell[][], x: number, y: number) {
-  const height = board.length
-  const width = board[0].length
+export function getNeighbors(board: Board, x: number, y: number) {
   const neighbors = []
 
   for (let i = x - 1; i < x + 2; i++) {
-    if (i < 0 || i >= height) continue
+    if (i < 0 || i >= board.height) continue
     for (let j = y - 1; j < y + 2; j++) {
-      if (j < 0 || j >= width) continue
+      if (j < 0 || j >= board.width) continue
       if (i !== x || j !== y) {
         neighbors.push([i, j])
       }
