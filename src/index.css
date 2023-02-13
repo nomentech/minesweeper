@@ -60,6 +60,8 @@ body {
 
 .emoji {
   cursor: pointer;
+  width: 36px;
+  height: 36px;
 }
 
 .counter {
@@ -84,9 +86,16 @@ body {
 }
 
 .square {
+  width: 24px;
+  height: 24px;
   display: flex;
   justify-content: center;
   align-items: center;
   background-color: silver;
   cursor: pointer;
+}
+
+.footer {
+  margin-top: 20px;
+  text-align: center;
 }

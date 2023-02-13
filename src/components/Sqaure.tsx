@@ -27,7 +27,7 @@ export default function Square({
       onDoubleClick={onDoubleClick}
       className="square"
     >
-      <img width={24} height={24} src={getContent(cell)} alt="" />
+      <img width="100%" height="100%" src={getContent(cell)} alt="" />
     </div>
   )
 }

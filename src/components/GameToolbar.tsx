@@ -23,7 +23,7 @@ export default function GameToolbar() {
     <div className="toolbar">
       <div className="counter">{String(counter).padStart(3, '0')}</div>
       <div className="emoji" onClick={handleClick}>
-        <img width={36} height={36} src={emoji} alt="" />
+        <img width="100%" height="100%" src={emoji} alt="" />
       </div>
       <Timer />
     </div>
