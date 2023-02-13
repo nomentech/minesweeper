@@ -20,7 +20,7 @@ export default function GameToolbar() {
 
   return (
     <div className="toolbar">
-      <div className="counter">{counter}</div>
+      <div className="counter">{String(counter).padStart(3, '0')}</div>
       <div className="emoji" onClick={handleClick}>
         {emoji}
       </div>
@@ -46,5 +46,5 @@ function Timer() {
     return () => clearInterval(id)
   }, [isPlaying, isEmpty])
 
-  return <div className="counter">{timer}</div>
+  return <div className="counter">{String(timer).padStart(3, '0')}</div>
 }

@@ -8,6 +8,11 @@ body {
   background-color: #f0f3f4;
 }
 
+@font-face {
+  font-family: 'Digital Dismay';
+  src: local('Digital Dismay'), url(./fonts/Digital-Dismay.otf);
+}
+
 .container {
   width: 1024px;
   margin: 50px auto;
@@ -47,7 +52,7 @@ body {
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  padding: 10px 0 10px 0;
+  padding: 10px;
   border: 5px solid silver;
   background-color: silver;
   box-shadow: inset 2px 2px 0 2px grey, inset -2px -2px 0 2px white;
@@ -61,8 +66,13 @@ body {
 }
 
 .counter {
-  width: 50px;
-  text-align: center;
+  padding-left: 3px;
+  padding-right: 1px;
+  background-color: black;
+  color: red;
+  font-size: xx-large;
+  font-family: 'Digital Dismay';
+  box-shadow: inset 1px 1px 0 1px grey, inset -1px -1px 0 1px white;
 }
 
 .board {
