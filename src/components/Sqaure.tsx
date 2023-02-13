@@ -17,8 +17,7 @@ export default function Square({
     if (!cell.isRevealed) return ICONS.unrevealed
     if (cell.isDetonated) return ICONS.detonation
     if (cell.isMine) return ICONS.mine
-    if (cell.mineCount === 0) return ICONS.empty
-    return cell.mineCount
+    return ICONS.numbers[cell.mineCount]
   }
 
   return (
@@ -26,7 +25,7 @@ export default function Square({
       onClick={onClick}
       onContextMenu={onRightClick}
       onDoubleClick={onDoubleClick}
-      className={`square ${!cell.isRevealed && 'square-closed'}`}
+      className={`square ${!cell.isRevealed ? 'square-closed' : ''}`}
     >
       {getContent(cell)}
     </div>
