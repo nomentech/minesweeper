@@ -10,7 +10,7 @@ body {
 
 @font-face {
   font-family: 'Digital Dismay';
-  src: local('Digital Dismay'), url(./fonts/Digital-Dismay.otf);
+  src: local('Digital Dismay'), url(./assets/fonts/Digital-Dismay.otf);
 }
 
 .container {

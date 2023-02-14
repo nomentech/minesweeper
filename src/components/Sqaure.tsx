@@ -1,4 +1,4 @@
-import { unrevealed, numbers, mine, mine_red, flag } from '../icons'
+import { unrevealed, numbers, mine, mine_red, flag } from '../assets/icons'
 import { Cell } from '../minesweeper/types'
 
 export default function Square({

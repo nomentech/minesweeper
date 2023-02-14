@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import { ActionType } from '../context/actionType'
 import { useBoard, useBoardDispatch } from '../context/BoardContext'
-import { face_lose, face_neutral, face_win } from '../icons'
+import { face_lose, face_neutral, face_win } from '../assets/icons'
 import { BOARD_LIST } from '../minesweeper/boardList'
 
 export default function GameToolbar() {

@@ -46,7 +46,7 @@ function revealCell(board: Board, x: number, y: number) {
   }
 }
 
-// Recusively reveal neighbors of the empty cell till none is found
+// Recursively reveal neighbors of the empty cell till none is found
 function revealEmptyCell(board: Board, x: number, y: number) {
   const field = board.field
   const neighbors = getNeighbors(board, x, y)
