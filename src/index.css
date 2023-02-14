@@ -70,7 +70,7 @@ body {
   background-color: black;
   color: red;
   font-size: xx-large;
-  font-family: 'Digital Dismay';
+  font-family: 'Digital Dismay', sans-serif;
   box-shadow: inset 1px 1px 0 1px grey, inset -1px -1px 0 1px white;
 }
 

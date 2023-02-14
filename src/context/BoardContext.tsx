@@ -9,13 +9,17 @@ import {
   revealNeighbors,
   toggleFlag,
 } from '../minesweeper/gamePlayer'
+import { Action, ActionType } from './actionType'
 
 const initialBoard = BOARD_LIST[0]
 const BoardContext = createContext<Board>(initialBoard)
-const BoardDispatchContext = createContext<React.Dispatch<any>>(() => null)
+const BoardDispatchContext = createContext<React.Dispatch<Action>>(() => null)
 
 export function BoardProvider({ children }: { children: ReactNode }) {
-  const [board, dispatch] = useImmerReducer(boardReducer, initialBoard)
+  const [board, dispatch] = useImmerReducer<Board, Action>(
+    boardReducer,
+    initialBoard
+  )
 
   return (
     <BoardContext.Provider value={board}>
@@ -34,30 +38,32 @@ export function useBoardDispatch() {
   return useContext(BoardDispatchContext)
 }
 
-function boardReducer(draft: Board, action: any) {
+function boardReducer(draft: Board, action: Action): Board {
   const { type, payload } = action
 
   switch (type) {
-    case 'reset_board':
+    case ActionType.reset_board:
       return payload.board
 
-    case 'create_mine_field':
+    case ActionType.create_mine_field:
       createMineField(draft, payload.x, payload.y)
       break
 
-    case 'reveal_cell':
+    case ActionType.reveal_cell:
       revealCell(draft, payload.x, payload.y)
       break
 
-    case 'toggle_flag':
+    case ActionType.toggle_flag:
       toggleFlag(draft, payload.x, payload.y)
       break
 
-    case 'reveal_neighbors':
+    case ActionType.reveal_neighbors:
       revealNeighbors(draft, payload.x, payload.y)
       break
 
     default:
-      throw Error('Unknown action: ' + action.type)
+      throw Error('Unknown action: ' + type)
   }
+
+  return draft
 }

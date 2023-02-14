@@ -51,9 +51,9 @@ function revealEmptyCell(board: Board, x: number, y: number) {
   const field = board.field
   const neighbors = getNeighbors(board, x, y)
 
-  for (let index = 0; index < neighbors.length; index++) {
-    const i = neighbors[index][0]
-    const j = neighbors[index][1]
+  for (const neighbor of neighbors) {
+    const i = neighbor[0]
+    const j = neighbor[1]
 
     // If neighbor already revealed, ignore
     if (field[i][j].isRevealed) continue

@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import { ActionType } from '../context/actionType'
 import { useBoard, useBoardDispatch } from '../context/BoardContext'
 import { face_lose, face_neutral, face_win } from '../icons'
 import { BOARD_LIST } from '../minesweeper/boardList'
@@ -15,8 +16,12 @@ export default function GameToolbar() {
   if (isWon === false) emoji = face_lose
 
   function handleClick() {
-    const newBoard = BOARD_LIST.find((b) => b.level === board.level)
-    boardDispatch({ type: 'reset_board', payload: { board: newBoard } })
+    const newBoard =
+      BOARD_LIST.find((b) => b.level === board.level) || BOARD_LIST[0]
+    boardDispatch({
+      type: ActionType.reset_board,
+      payload: { board: newBoard },
+    })
   }
 
   return (

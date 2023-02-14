@@ -1,5 +1,6 @@
 import Square from './Sqaure'
 import { useBoard, useBoardDispatch } from '../context/BoardContext'
+import { ActionType } from '../context/actionType'
 
 export default function GameBoard() {
   const board = useBoard()
@@ -8,23 +9,26 @@ export default function GameBoard() {
 
   function handleClick(x: number, y: number) {
     if (board.isEmpty) {
-      boardDispatch({ type: 'create_mine_field', payload: { board, x, y } })
+      boardDispatch({
+        type: ActionType.create_mine_field,
+        payload: { board, x, y },
+      })
     }
 
     if (!field[x][y].isRevealed && !field[x][y].isFlag) {
-      boardDispatch({ type: 'reveal_cell', payload: { x, y } })
+      boardDispatch({ type: ActionType.reveal_cell, payload: { x, y } })
     }
   }
 
   function handleRightClick(x: number, y: number) {
     if (!field[x][y].isRevealed) {
-      boardDispatch({ type: 'toggle_flag', payload: { x, y } })
+      boardDispatch({ type: ActionType.toggle_flag, payload: { x, y } })
     }
   }
 
   function handleDoubleClick(x: number, y: number) {
     if (field[x][y].isRevealed && field[x][y].mineCount !== 0) {
-      boardDispatch({ type: 'reveal_neighbors', payload: { x, y } })
+      boardDispatch({ type: ActionType.reveal_neighbors, payload: { x, y } })
     }
   }
 

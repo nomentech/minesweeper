@@ -1,5 +1,6 @@
 import { useBoard, useBoardDispatch } from '../context/BoardContext'
 import { BOARD_LIST } from '../minesweeper/boardList'
+import { ActionType } from '../context/actionType'
 import { Board } from '../minesweeper/types'
 
 export default function Header() {
@@ -8,7 +9,10 @@ export default function Header() {
 
   function handleClick(selected: Board) {
     if (!isSame(current, selected)) {
-      boardDispatch({ type: 'reset_board', payload: { board: selected } })
+      boardDispatch({
+        type: ActionType.reset_board,
+        payload: { board: selected },
+      })
     }
   }
 
