@@ -62,7 +62,12 @@ function revealEmptyCell(board: Board, x: number, y: number) {
     reveal(board, i, j)
     if (isWinning(board)) return
 
-    field[i][j].isFlag = false // Remove flag if it is placed on the neighbor
+    // Remove flag if it is placed on the neighbor
+    if (field[i][j].isFlag) {
+      field[i][j].isFlag = false
+      board.flags--
+    }
+
     if (field[i][j].mineCount === 0) {
       revealEmptyCell(board, i, j)
     }
