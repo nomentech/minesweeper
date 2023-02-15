@@ -17,6 +17,7 @@ function revealNeighbors(board: Board, x: number, y: number) {
     const i = neighbor[0]
     const j = neighbor[1]
     if (!field[i][j].isMine && field[i][j].isFlag) {
+      field[i][j].isWrongFlag = true
       revealAll(board)
     }
     revealCell(board, i, j)

@@ -11,6 +11,7 @@ function createEmptyField(width: number, height: number) {
         isFlag: false,
         isRevealed: false,
         isDetonated: false,
+        isWrongFlag: false,
         mineCount: 0
       }
     }
