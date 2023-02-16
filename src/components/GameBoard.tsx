@@ -1,6 +1,6 @@
 import Square from './Sqaure'
-import { useBoard, useBoardDispatch } from '../context/BoardContext'
 import { ActionType } from '../context/actionType'
+import { useBoard, useBoardDispatch } from '../context/BoardContext'
 
 export default function GameBoard() {
   const board = useBoard()
@@ -33,9 +33,11 @@ export default function GameBoard() {
   }
 
   return (
-    <div className="board">
+    <div className='board'>
       {board.field.map((row, rowIndex) => (
-        <div key={rowIndex} className="board-row">
+        // index here is relatively persistent, it is the only valid choice
+        // thus, it is ok to be used as key
+        <div key={rowIndex} className='board-row'>
           {row.map((col, colIndex) => (
             <Square
               key={colIndex}

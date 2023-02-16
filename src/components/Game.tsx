@@ -3,8 +3,8 @@ import GameToolbar from './GameToolbar'
 
 export default function Game() {
   return (
-    <div className="content">
-      <div className="game">
+    <div className='content'>
+      <div className='game'>
         <GameToolbar />
         <GameBoard />
       </div>

@@ -1,6 +1,7 @@
-import { Board, Cell } from "./types"
+import { Board, Cell } from './types'
 
 export function getNeighbors(board: Board, x: number, y: number) {
+  // List of [row, col]
   const neighbors = []
 
   for (let i = x - 1; i < x + 2; i++) {

@@ -1,4 +1,4 @@
-import { Board } from "../minesweeper/types";
+import { Board } from '../minesweeper/types';
 
 export enum ActionType {
   reset_board  = 'reset_board',

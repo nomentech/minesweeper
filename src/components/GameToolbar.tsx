@@ -12,6 +12,8 @@ export default function GameToolbar() {
   const counter = board.mines - board.flags
 
   let emoji = face_neutral
+  // board.isWon could be null.
+  // Use === to compare to true/false is necessary
   if (isWon === true) emoji = face_win
   if (isWon === false) emoji = face_lose
 
@@ -25,10 +27,10 @@ export default function GameToolbar() {
   }
 
   return (
-    <div className="toolbar">
-      <div className="counter">{String(counter).padStart(3, '0')}</div>
-      <div className="emoji" onClick={handleClick}>
-        <img width="100%" height="100%" src={emoji} alt="" />
+    <div className='toolbar'>
+      <div className='counter'>{formatDisplay(counter)}</div>
+      <div className='emoji' onClick={handleClick}>
+        <img width='100%' height='100%' src={emoji} alt='' />
       </div>
       <Timer />
     </div>
@@ -52,5 +54,9 @@ function Timer() {
     return () => clearInterval(id)
   }, [isPlaying, isEmpty])
 
-  return <div className="counter">{String(timer).padStart(3, '0')}</div>
+  return <div className='counter'>{formatDisplay(timer)}</div>
+}
+
+function formatDisplay(num: number) {
+  return String(num).padStart(3, '0')
 }

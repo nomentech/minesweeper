@@ -16,12 +16,8 @@ export default function Header() {
     }
   }
 
-  function isSame(current: Board, selected: Board) {
-    return current.level === selected.level
-  }
-
   return (
-    <div className="header">
+    <div className='header'>
       {BOARD_LIST.map((board) => (
         <div
           key={board.level}
@@ -33,4 +29,8 @@ export default function Header() {
       ))}
     </div>
   )
+}
+
+function isSame(current: Board, selected: Board) {
+  return current.level === selected.level
 }

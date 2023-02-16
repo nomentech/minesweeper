@@ -19,15 +19,6 @@ export default function Square({
   onRightClick: React.MouseEventHandler
   onDoubleClick: React.MouseEventHandler
 }) {
-  function getContent(cell: Cell) {
-    if (cell.isWrongFlag) return flag_red
-    if (cell.isFlag) return flag
-    if (!cell.isRevealed) return unrevealed
-    if (cell.isDetonated) return mine_red
-    if (cell.isMine) return mine
-    return numbers[cell.mineCount]
-  }
-
   return (
     <div
       onClick={onClick}
@@ -35,7 +26,16 @@ export default function Square({
       onDoubleClick={onDoubleClick}
       className='square'
     >
-      <img width='100%' height='100%' src={getContent(cell)} alt='' />
+      <img width='100%' height='100%' src={getValue(cell)} alt='' />
     </div>
   )
+}
+
+function getValue(cell: Cell) {
+  if (cell.isWrongFlag) return flag_red
+  if (cell.isFlag) return flag
+  if (!cell.isRevealed) return unrevealed
+  if (cell.isDetonated) return mine_red
+  if (cell.isMine) return mine
+  return numbers[cell.mineCount]
 }
